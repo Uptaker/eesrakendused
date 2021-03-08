@@ -17,4 +17,4 @@ Olen koostanud väikse landing-page'i kodutööna.
 ### Pildid
 
 ![Desktop](preview/desktop.png "Desktop")
-![Mobile](preview/Mobile.png "Mobile")
+![Mobile](preview/mobile.png "Mobile")
