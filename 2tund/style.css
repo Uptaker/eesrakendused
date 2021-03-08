@@ -1,0 +1,22 @@
+html {
+    background-color: white;
+}
+body {
+    max-width: 960px;
+    margin: auto;
+    margin-top: 30px;
+    background-color: rgb(247, 238, 229);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+div {
+    background-color: rgb(240, 212, 179);
+    padding: 1rem;
+}
+button {
+    margin: auto;
+}
+div li {
+    display: flex;
+    justify-content: space-between;
+}

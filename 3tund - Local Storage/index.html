@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Teine</title>
+</head>
+<body>
+    <div id="clock">
+        <span id="time"></span>
+    </div>
+    <div id="first"><h1>Kolmas tund</h1></div>
+    <div id="second">Kui sessioon lõpeb, siis sessiooni väärtused lähevad tühjaks</div>
+    <div id="third">Local storage hoiab väärtusi ka hiljem</div>
+    </div>
+    <main>
+        <input type="text" id="fname" placeholder="Eesnimi">
+        <input type="text" id="lname" placeholder="Perekonnanimi">
+        <input type="text" id="email" placeholder="E-mail">
+        <div id="buttonContainer">
+            <button id="saveLocal">Salvesta</button>
+            <button id="loadLocal">Laadi</button>
+            <button id="deleteLocal">Kustuta</button>
+        </div>
+
+        <div id="dataContainer">Siia tulevad andmed</div>
+    </main>
+    
+    <script src="second.js" defer></script>
+</body>
+</html>

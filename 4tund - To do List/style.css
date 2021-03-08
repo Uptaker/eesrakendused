@@ -1,0 +1,122 @@
+html {
+    background-color: white;
+}
+/* body {
+    max-width: 960px;
+    margin: auto;
+    margin-top: 30px;
+    background-color: rgb(247, 238, 229);
+    border-radius: 0.5rem;
+    padding: 1rem;
+} */
+
+button {
+    margin: auto;
+}
+
+input {
+    /* width: calc(100% - 6px); */
+    width: 25%;
+    border: 1px dashed grey;
+    margin: 4px 3px;
+    padding: 14px 20px;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    outline:none;
+}
+
+.completed .entryValue div {
+    background-color: rgb(146, 199, 146);
+    text-decoration: line-through;
+}
+
+#inputContainer, #buttonContainer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+#buttonContainer input[type="button"] {
+    transition: all 0.3s;
+    font-weight: bold;
+    word-spacing: 2;
+}
+
+#buttonContainer input[type="button"]:hover {
+    background-color: rgb(231, 190, 137);
+    transform: scale(1.02);
+    border: none;
+}
+
+.deleteButton {
+    margin: 10px auto;
+    border: 1px solid red;
+    padding: 5px 10px;
+    text-align: center;
+    width: 10%;
+}
+
+.deletebutton:hover {
+    background-color: red;
+    color: white;
+}
+ul li div{
+    display: flex;
+
+    justify-content: space-around;
+}
+
+li {
+    border: 1px dashed gray;
+    padding: 10px;
+    list-style: none;
+    border-radius: 1rem;
+    margin: 20px 5px;
+}
+
+button {
+    background-color: rgb(91, 191, 253);
+    padding: 14px 20px;
+    border: none;
+    border-radius: 1rem;
+    margin: 0 1rem;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+}
+button:nth-of-type(2) {
+    background-color: limegreen;
+}
+
+button:nth-of-type(3) {
+    background-color: lightcoral;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: lightsteelblue;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#dataContainer {
+    background-color: rgb(203, 213, 223);
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+    #buttonContainer {
+        flex-direction: column;
+    }
+    button {
+        margin: 0.5rem 0;
+    }
+}
+
