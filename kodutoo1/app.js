@@ -78,7 +78,7 @@ redditSubmit.addEventListener('click', (e) => {
 });
 
 document.querySelector('#gitLink').addEventListener('click', () => {
-    location.href = 'https://github.com/Uptaker';
+    location.href = 'https://github.com/eesrakenduste-arendamine-2021/1-kodutoo';
 });
 
 document.querySelector('#subLink').addEventListener('click', () => {
