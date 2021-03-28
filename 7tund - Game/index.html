@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Headcrab Obstacle Course</title>
+</head>
+<body>
+    <h1>Headcrab Obstacle Course</h1>
+    <section id="game">
+        <div id="userScores">
+            <h2 id="score"></h2>
+            <h2 id="highestScore"></h2>
+        </div>
+        <canvas id="canvas" width="512" height="512"></canvas>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+        <button id=saveScore>Save hiscore</button>
+    </section>
+
+    <section id="tutorial">
+        <h2>Press <span>ANY KEY</span> to start the game</h2>
+        <h3>If this is your first time, you'll be prompted for a name</h2>
+        <div>
+            <h2>W to go UP</h2>
+            <h2>S to go DOWN</h2>
+        </div>
+    </section>
+
+    <section>
+        <h2>Public Scoreboard</h2>
+        <div id="scoreboardContainer">
+            <div id="scoreboard"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>About</h2>
+        <p>
+            This game was made as an assignment for a TLU Front-End Development course
+
+            
+
+            <ul> 
+                <h3>Technologies Used</h3>
+                <li>jQuery</li>
+                <li>HTML5 Canvas</li>
+            </ul>
+        </p>
+    </section>
+</body>
+</html>
