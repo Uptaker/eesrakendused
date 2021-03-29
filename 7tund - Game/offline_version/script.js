@@ -1,10 +1,11 @@
-/*
+/* sources:
 Features:
 - leaderboard
 - game
 - set name before playing
 */
 $("#game").hide();
+
 
 let pName;
 let score;
@@ -33,7 +34,6 @@ class Game {
         this.index;
         this.pName = pName;
         this.highestScore = score;
-        this.isOnHiscores();
         this.c = document.querySelector("#canvas"); // https://stackoverflow.com/questions/5808162/getcontext-is-not-a-function doesn't accept jQuery
         this.ctx = this.c.getContext("2d"); // context
         this.sprites = 6;
@@ -42,9 +42,7 @@ class Game {
         this.gravity = 0.8;
         this.failed = false;
         this.paused = false;
-        this.gap = 85;
 
-        // create sprites
         this.player = new Image();
         this.player.reference = this;
         this.bg = new Image();
@@ -77,34 +75,43 @@ class Game {
         this.die.src = "audio/hc_die1.wav";
         this.music.src = "audio/Half-Life03.mp3"
 
+
+
+
         this.pX = 50; // player starting location
         this.pY = 150;
 
         // set sprite locations and load.
         this.bg.onload = this.loaded;
         this.bg.src = "images/bg.png";
+
         this.player.onload = this.loaded;
         this.player.src = "images/crab.png";
+
         this.fg.onload = this.loaded;
         this.fg.src = "images/fg.png";
+
         this.north.onload = this.loaded;
         this.north.src = "images/north.png";
+
+        this.gap = 85;
+        this.constant = this.north.height + this.gap;
+
         this.south.onload = this.loaded;
         this.south.src = "images/south.png";
+
         this.gameOver.onload = this.loaded;
         this.gameOver.src = "images/gameover.png";
+
         this.pause.onload = this.loaded;
         this.pause.src = "images/pause.png";
 
-        // keyboard events throughout the game
+
         $(document).on('keydown', (e) => {
             this.moveUp(e.key)
         });
         $("#canvas").on('click', () => {
             this.moveUp("tap")
-        });
-        $("#saveScore").on('click', () => {
-            this.loadToDB();
         });
 
         this.drawUsername();
@@ -119,89 +126,11 @@ class Game {
         }
     }
 
-    // check if name exists in scoreboard
-    isOnHiscores() {
-        let ind;
-        $.get('database.txt', (data) => {
-            let content = JSON.parse(data).content;
-            for (let i = 0; i < content.length; i++) {
-                if (content[i].name == this.pName) {
-                    ind = this.index;
-                    this.index = i;
-                    if (localStorage.getItem('headcrab')) {
-                        let score = localStorage.getItem('headcrab');
-                        this.highestScore = JSON.parse(score).score;
-                    } else {
-                        this.highestScore = content[i].score;
-                    }
-                    break;
-                }
-            }
-        });
-        if (ind == undefined) {
-            this.index = "no";
-        }
-        this.saveResult();
-    }
-
-    // load to db
-    loadToDB() {
-        this.paused = true;
-        $('#saveScore').html("Saving...").css("backgroundColor", "rgba(102,19,49,1)");
-        this.loadFromDB();
-        let result;
-        setTimeout(() => {
-            if (this.index == "no") {
-                result = {
-                    name: this.pName,
-                    score: this.highestScore
-                }
-                this.results.push(result);
-            } else {
-                this.results[this.index].score = this.highestScore;
-            }
-            this.results.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
-            $.post('server.php', { save: this.results }).done(function () {
-                console.log('Success');
-            }).fail(function () {
-                console.log("FAILED");
-            }
-            ).always(function () {
-                console.log("AJAX request..");
-            });
-        }, 1000);
-        this.loadFromDB();
-
-        // unpause the game, make button fancy
-        setTimeout(() => {
-            this.paused = false;
-            $('#saveScore').html("Saved");
-            setTimeout(() => {
-                $('#saveScore').html("Save Hiscore").css("backgroundColor", "rgb(128, 67, 89)");
-
-                $("#saveScore").mouseover(function () {
-                    $(this).css("background-color", "rgb(107, 56, 148)");
-                }).mouseout(function () {
-                    $(this).css("background-color", "rgb(128, 67, 89)");
-                });
-            }, 1000);
-        }, 2000);
-    }
-
-    // load from db
-    loadFromDB() {
-        $.get('database.txt', (data) => {
-            let content = JSON.parse(data).content;
-            localStorage.setItem('headcrabAll', JSON.stringify(content));
-            this.results = JSON.parse(localStorage.getItem('headcrabAll'));
-        }).done();
-    }
-
-    // draw info outside of the canvas
     drawScore() {
         $('#score').html(`Score: ${this.score}`);
         $('#highestScore').html(`Hiscore: ${this.highestScore}`);
     }
+
     drawUsername() {
         $('#showUsername').html(`Playing as: ${this.pName}`);
     }
@@ -320,22 +249,3 @@ class Game {
         }
     }
 }
-
-// reads db and parses results to the leaderboard, top 25
-function readScoreboard() {
-    $.get('database.txt', (data) => {
-        let results = JSON.parse(data).content;
-        $('#scoreboard').append("<tr><th>Rank</th><th>Name</th><th>Score</th></tr>");
-        for (let i = 0; i < results.length; i++) {
-            if (i > 24) {
-                break;
-            }
-            $('#scoreboard').append(`<tr>
-            <td>${i + 1}</td>
-            <td>${results[i].name}</td>
-            <td>${results[i].score}</td>
-            </tr>}`);
-        }
-    });
-}
-readScoreboard();
